@@ -282,7 +282,21 @@ if (Symbol && Symbol.iterator) {
     }
 }
 OSATreeSort.prototype.toJSON = function() {
-  return JSON.parse(JSON.stringify(this.top,function(key,value) {if (name !== 'top' || typeof value !== 'function') return value}));
+  return JSON.parse(
+    JSON.stringify(this.top,function(key,value) {
+      if (key === 'value') {
+        return JSON.stringify(value); //avoid running the value through this filter function
+      }
+      else if (name === 'top' || typeof value === 'function')
+        return undefined
+      }
+      return value;
+    }),function (key,value) {
+      if (key == 'value') {
+        return JSON.parse(value); //re-parse the value back to it's original form
+      }
+      return value;
+    });
 }
 OSATreeNode.prototype.next = function() {
     var node = this;
@@ -487,3 +501,8 @@ for (a = 1000000; a--; osa.add((Math.random() * 1000000) >> 0)) {
     }
     if (!(length % 100)) console.log('length:', length, 'steps:', checks, 'bin max:', binary, pow);
 }*/
+
+
+booking[0][sdfgt][0][asdfasdf]=8&
+name split("[\[\]]+")
+values
