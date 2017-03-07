@@ -281,7 +281,9 @@ if (Symbol && Symbol.iterator) {
         return array;
     }
 }
-
+OSATreeSort.prototype.toJSON = function() {
+  return JSON.parse(JSON.stringify(this.top,function(key,value) {if (name !== 'top' || typeof value !== 'function') return value}));
+}
 OSATreeNode.prototype.next = function() {
     var node = this;
     if (node.tree.last === node) {
